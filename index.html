@@ -361,7 +361,7 @@
             width: 100%;
             height: auto;
             display: block;
-            transform: scale(1.06) translateY(0px);
+            transform: translateY(0px);
             transition: transform 0.1s linear;
             will-change: transform;
         }
@@ -715,8 +715,8 @@ function applyParallax() {
         // Only apply when section is in view
         if (rect.bottom < 0 || rect.top > viewH) return;
         const relPos = (rect.top / viewH);        // +1 above, 0 at top, -1 below
-        const offset = relPos * 18;               // max ±18px shift
-        img.style.transform = `scale(1.06) translateY(${offset}px)`;
+        const offset = relPos * 10;               // max ±10px shift, no scale
+        img.style.transform = `translateY(${offset}px)`;
     });
 }
 
