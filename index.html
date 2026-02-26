@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RJ Grill and Resto Bar - Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Fallback dark brown */
+            --bg-color: #2e1c11; 
+            --primary-color: #ff7b00;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            /* Ensures the gradient covers the full height even if content is short */
+            min-height: 100%; 
+        }
+
+        body {
+            /* Wood-like brown gradient background */
+            background: linear-gradient(135deg, #5c351f 0%, #311a0e 45%, #140803 100%);
+            background-attachment: fixed; /* Keeps the gradient static while scrolling */
+            padding-top: 60px; 
+            padding-bottom: 80px; 
+        }
+
+        /* --- LOADING SCREEN STYLES --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Matching wood gradient for the loader */
+            background: linear-gradient(135deg, #5c351f 0%, #311a0e 45%, #140803 100%);
+            z-index: 9999; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 123, 0, 0.2); 
+            border-top: 5px solid var(--primary-color); 
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 15px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        /* ----------------------------- */
+
+        /* Sticky Top Bar for Facebook Link */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(20, 8, 3, 0.95); /* Very dark brown, slightly transparent */
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .btn-fb {
+            background-color: #1877F2;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+        }
+
+        .btn-fb:active {
+            transform: scale(0.95);
+        }
+
+        /* Menu Images Container */
+        .menu-container {
+            max-width: 600px; 
+            margin: 0 auto;
+            /* Added a subtle shadow and border to make the menu pop off the wood background */
+            background-color: #000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border-left: 1px solid #4a2815;
+            border-right: 1px solid #4a2815;
+        }
+
+        .menu-container img {
+            width: 100%;
+            height: auto;
+            display: block; 
+            border-bottom: 3px solid #2e1c11; /* Thicker dark brown separator */
+        }
+
+        /* Floating Scroll Controls */
+        .floating-controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 1000;
+        }
+
+        .float-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            border: 1px solid #ffd0a6; /* Subtle bright edge to make it pop */
+        }
+
+        .float-btn:active {
+            transform: scale(0.9);
+            background-color: #e66a00;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loader-text">Loading Menu...</div>
+    </div>
+
+    <div class="top-bar">
+        <a href="https://facebook.com/RJGrillHouse/" target="_blank" class="btn-fb">
+            <i class="fab fa-facebook-f"></i> Visit our Facebook Page
+        </a>
+    </div>
+
+    <div class="menu-container">
+        <img src="Front.jpg" alt="RJ Grill and Resto Bar Front Cover">
+        <img src="2(1).jpg" alt="Alfonso and Fundador Liquor Promos">
+        <img src="11.jpg" alt="Beer Bucket Promos">
+        <img src="Family Combos.jpg" alt="Family Combos Sets">
+        <img src="House Special.jpg" alt="House Special Pork, Beef, Chicken, and Seafood">
+        <img src="Beer Match.jpg" alt="Beer Match, Special Menu, and Drinks">
+    </div>
+
+    <div class="floating-controls">
+        <button class="float-btn" onclick="scrollToTop()" title="Scroll to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="float-btn" onclick="scrollToBottom()" title="Scroll to Bottom">
+            <i class="fas fa-arrow-down"></i>
+        </button>
+    </div>
+
+    <script>
+        // Hide loader when everything (including images) is fully loaded
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loader');
+            loader.classList.add('loader-hidden');
+            
+            // Completely remove it from the DOM after the fade transition
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+
+        // Scroll Functions
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
