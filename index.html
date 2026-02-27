@@ -30,7 +30,7 @@
                 radial-gradient(ellipse at top left, #3d1f0d 0%, transparent 60%),
                 radial-gradient(ellipse at bottom right, #2a1208 0%, transparent 60%);
             background-attachment: fixed;
-            padding-top: 72px;
+            padding-top: 80px;
             padding-bottom: 100px;
             min-height: 100vh;
             overflow-x: hidden;
@@ -106,13 +106,14 @@
             background: rgba(12, 5, 2, 0.93);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            padding: 12px 20px;
+            padding: 10px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
             border-bottom: 1px solid var(--border);
             transition: box-shadow 0.3s;
+            gap: 10px;
         }
 
         .top-bar.scrolled {
@@ -126,6 +127,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             line-height: 1.3;
+            flex-shrink: 0;
         }
 
         .brand-name span {
@@ -137,17 +139,25 @@
             font-weight: 300;
         }
 
+        /* ── TOP BAR ACTIONS ── */
+        .top-bar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+
         .btn-fb {
             background: linear-gradient(135deg, #1877F2, #0d5abf);
             color: white;
             text-decoration: none;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 30px;
             font-weight: 700;
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             display: inline-flex;
             align-items: center;
-            gap: 7px;
+            gap: 6px;
             transition: all 0.25s ease;
             box-shadow: 0 3px 12px rgba(24,119,242,0.3);
             border: 1px solid rgba(255,255,255,0.12);
@@ -156,6 +166,131 @@
         .btn-fb:hover {
             transform: translateY(-1px);
             box-shadow: 0 6px 20px rgba(24,119,242,0.45);
+        }
+
+        /* ── CALL BUTTON ── */
+        .btn-call {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.25s ease;
+            box-shadow: 0 3px 12px rgba(46,125,50,0.35);
+            border: 1px solid rgba(255,255,255,0.12);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .btn-call:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(46,125,50,0.5);
+        }
+
+        .btn-call .call-icon {
+            animation: ring 2.5s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes ring {
+            0%, 100% { transform: rotate(0deg); }
+            10% { transform: rotate(-15deg); }
+            20% { transform: rotate(15deg); }
+            30% { transform: rotate(-10deg); }
+            40% { transform: rotate(10deg); }
+            50% { transform: rotate(0deg); }
+        }
+
+        /* ── CALL DROPDOWN ── */
+        .call-wrapper {
+            position: relative;
+        }
+
+        .call-dropdown {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            background: rgba(10, 5, 2, 0.96);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            min-width: 210px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.7);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-6px);
+            transition: all 0.25s ease;
+            z-index: 2000;
+        }
+
+        .call-dropdown.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .call-dropdown-header {
+            padding: 10px 16px 8px;
+            font-size: 0.58rem;
+            letter-spacing: 3px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .call-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-size: 0.88rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: background 0.2s ease;
+        }
+
+        .call-option:not(:last-child) {
+            border-bottom: 1px solid rgba(200,135,58,0.1);
+        }
+
+        .call-option:hover {
+            background: rgba(200,135,58,0.12);
+            color: var(--accent-light);
+        }
+
+        .call-option .call-num-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(46,125,50,0.2);
+            border: 1px solid rgba(46,125,50,0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #66bb6a;
+            font-size: 0.75rem;
+            flex-shrink: 0;
+        }
+
+        .call-option-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .call-option-label {
+            font-size: 0.58rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2px;
         }
 
         /* ── SCROLL PROGRESS BAR ── */
@@ -301,7 +436,6 @@
                 inset 0 1px 0 rgba(200,135,58,0.12);
         }
 
-        /* ── MENU SECTION (reveal + parallax) ── */
         .menu-section {
             position: relative;
             overflow: hidden;
@@ -319,17 +453,11 @@
             border-bottom: 1px solid var(--border);
         }
 
-        /* Shimmer overlay on hover */
         .menu-section::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(
-                120deg,
-                transparent 0%,
-                rgba(255,255,255,0.04) 50%,
-                transparent 100%
-            );
+            background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.04) 50%, transparent 100%);
             transform: translateX(-100%);
             transition: transform 0.6s ease;
             pointer-events: none;
@@ -340,7 +468,6 @@
             transform: translateX(100%);
         }
 
-        /* Top gradient overlay on image */
         .menu-section::before {
             content: '';
             position: absolute;
@@ -351,7 +478,6 @@
             z-index: 2;
         }
 
-        /* Parallax image wrapper */
         .parallax-wrap {
             overflow: hidden;
             height: auto;
@@ -456,15 +582,13 @@
         @media (max-width: 480px) {
             .page-header h1 { font-size: 1.8rem; }
             .section-nav { right: 8px; }
+            .btn-fb span, .btn-call span { display: none; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Particle canvas -->
     <canvas id="particle-canvas"></canvas>
-
-    <!-- Page scroll progress -->
     <div class="scroll-progress-bar" id="scrollBar"></div>
 
     <!-- Loader -->
@@ -482,12 +606,41 @@
             RJ Grill
             <span>Resto Bar</span>
         </div>
-        <a href="https://facebook.com/RJGrillHouse/" target="_blank" class="btn-fb">
-            <i class="fab fa-facebook-f"></i> Follow Us
-        </a>
+
+        <div class="top-bar-actions">
+            <!-- Call Button with Dropdown -->
+            <div class="call-wrapper" id="callWrapper">
+                <button class="btn-call" id="callBtn" onclick="toggleCallDropdown()">
+                    <span class="call-icon"><i class="fas fa-phone"></i></span>
+                    <span>Call Us</span>
+                </button>
+                <div class="call-dropdown" id="callDropdown">
+                    <div class="call-dropdown-header">Choose a number</div>
+                    <a href="tel:0907765848" class="call-option">
+                        <div class="call-num-icon"><i class="fas fa-phone"></i></div>
+                        <div class="call-option-info">
+                            <span class="call-option-label">Line 1</span>
+                            <span>0907 765 848</span>
+                        </div>
+                    </a>
+                    <a href="tel:09258062577" class="call-option">
+                        <div class="call-num-icon"><i class="fas fa-phone"></i></div>
+                        <div class="call-option-info">
+                            <span class="call-option-label">Line 2</span>
+                            <span>0925 806 2577</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Facebook Button -->
+            <a href="https://facebook.com/RJGrillHouse/" target="_blank" class="btn-fb">
+                <i class="fab fa-facebook-f"></i>
+                <span>Follow Us</span>
+            </a>
+        </div>
     </div>
 
-    <!-- Section progress dots -->
     <nav class="section-nav" id="sectionNav"></nav>
 
     <!-- Header -->
@@ -571,9 +724,7 @@
     </div>
 
 <script>
-/* ══════════════════════════════════════
-   LOADER with animated progress bar
-══════════════════════════════════════ */
+/* ── LOADER ── */
 const loaderBar = document.getElementById('loaderBar');
 let progress = 0;
 const loadInterval = setInterval(() => {
@@ -592,9 +743,20 @@ window.addEventListener('load', () => {
     }, 300);
 });
 
-/* ══════════════════════════════════════
-   FIRE / EMBER PARTICLE SYSTEM
-══════════════════════════════════════ */
+/* ── CALL DROPDOWN ── */
+function toggleCallDropdown() {
+    document.getElementById('callDropdown').classList.toggle('open');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', (e) => {
+    const wrapper = document.getElementById('callWrapper');
+    if (!wrapper.contains(e.target)) {
+        document.getElementById('callDropdown').classList.remove('open');
+    }
+});
+
+/* ── PARTICLES ── */
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 
@@ -607,7 +769,6 @@ window.addEventListener('resize', resize);
 
 class Particle {
     constructor() { this.reset(true); }
-
     reset(initial = false) {
         this.x = Math.random() * canvas.width;
         this.y = initial ? Math.random() * canvas.height : canvas.height + 10;
@@ -617,31 +778,17 @@ class Particle {
         this.opacity = Math.random() * 0.5 + 0.1;
         this.life = 0;
         this.maxLife = Math.random() * 220 + 120;
-        // Color: orange → amber → dim red
-        const colors = [
-            `rgba(220,100,20,`,
-            `rgba(200,135,58,`,
-            `rgba(255,160,60,`,
-            `rgba(180,70,10,`,
-            `rgba(255,200,80,`
-        ];
+        const colors = [`rgba(220,100,20,`,`rgba(200,135,58,`,`rgba(255,160,60,`,`rgba(180,70,10,`,`rgba(255,200,80,`];
         this.color = colors[Math.floor(Math.random() * colors.length)];
     }
-
     update() {
         this.x += this.speedX + Math.sin(this.life * 0.04) * 0.3;
         this.y += this.speedY;
         this.life++;
-        // Fade in/out
-        const lifeFraction = this.life / this.maxLife;
-        if (lifeFraction < 0.2) {
-            this.opacity = lifeFraction / 0.2 * 0.45;
-        } else {
-            this.opacity = (1 - lifeFraction) * 0.45;
-        }
+        const lf = this.life / this.maxLife;
+        this.opacity = lf < 0.2 ? (lf / 0.2 * 0.45) : ((1 - lf) * 0.45);
         if (this.life >= this.maxLife || this.y < -10) this.reset();
     }
-
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
@@ -651,7 +798,6 @@ class Particle {
 }
 
 const particles = Array.from({ length: 90 }, () => new Particle());
-
 function animateParticles() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => { p.update(); p.draw(); });
@@ -659,19 +805,15 @@ function animateParticles() {
 }
 animateParticles();
 
-/* ══════════════════════════════════════
-   SECTION PROGRESS INDICATOR (dots)
-══════════════════════════════════════ */
+/* ── SECTION DOTS ── */
 const sections = document.querySelectorAll('.menu-section');
 const sectionNav = document.getElementById('sectionNav');
 
-sections.forEach((sec, i) => {
+sections.forEach((sec) => {
     const dot = document.createElement('div');
     dot.className = 'section-dot';
     dot.setAttribute('data-label', sec.getAttribute('data-label'));
-    dot.addEventListener('click', () => {
-        sec.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
+    dot.addEventListener('click', () => sec.scrollIntoView({ behavior: 'smooth', block: 'center' }));
     sectionNav.appendChild(dot);
 });
 
@@ -679,84 +821,53 @@ const dots = document.querySelectorAll('.section-dot');
 
 function updateActiveDot() {
     const mid = window.innerHeight / 2;
-    let closest = 0;
-    let closestDist = Infinity;
+    let closest = 0, closestDist = Infinity;
     sections.forEach((sec, i) => {
         const rect = sec.getBoundingClientRect();
-        const center = rect.top + rect.height / 2;
-        const dist = Math.abs(center - mid);
+        const dist = Math.abs(rect.top + rect.height / 2 - mid);
         if (dist < closestDist) { closestDist = dist; closest = i; }
     });
     dots.forEach((d, i) => d.classList.toggle('active', i === closest));
 }
 
-/* ══════════════════════════════════════
-   SCROLL REVEAL (Intersection Observer)
-══════════════════════════════════════ */
+/* ── SCROLL REVEAL ── */
 const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
 }, { threshold: 0.08 });
-
 sections.forEach(sec => revealObserver.observe(sec));
 
-/* ══════════════════════════════════════
-   PARALLAX on scroll
-══════════════════════════════════════ */
+/* ── PARALLAX ── */
 function applyParallax() {
     sections.forEach(sec => {
         const img = sec.querySelector('img');
         if (!img) return;
         const rect = sec.getBoundingClientRect();
         const viewH = window.innerHeight;
-        // Only apply when section is in view
         if (rect.bottom < 0 || rect.top > viewH) return;
-        const relPos = (rect.top / viewH);        // +1 above, 0 at top, -1 below
-        const offset = relPos * 10;               // max ±10px shift, no scale
+        const offset = (rect.top / viewH) * 10;
         img.style.transform = `translateY(${offset}px)`;
     });
 }
 
-/* ══════════════════════════════════════
-   SCROLL PROGRESS BAR + topbar shadow
-══════════════════════════════════════ */
+/* ── SCROLL HANDLER ── */
 const scrollBar = document.getElementById('scrollBar');
 const topBar = document.getElementById('topBar');
 
 function onScroll() {
-    // Progress bar
     const scrollTop = window.scrollY;
     const docH = document.documentElement.scrollHeight - window.innerHeight;
     scrollBar.style.width = (scrollTop / docH * 100) + '%';
-
-    // Topbar shadow
     topBar.classList.toggle('scrolled', scrollTop > 10);
-
-    // Active dot
     updateActiveDot();
-
-    // Parallax
     applyParallax();
 }
 
 window.addEventListener('scroll', onScroll, { passive: true });
-
-// Init
 updateActiveDot();
 applyParallax();
 
-/* ══════════════════════════════════════
-   SCROLL HELPERS
-══════════════════════════════════════ */
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-function scrollToBottom() {
-    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-}
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function scrollToBottom() { window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' }); }
 </script>
 </body>
 </html>
